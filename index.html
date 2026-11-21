@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>夜桜の裏舞台</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!--
+    夜桜の裏舞台(メインのゲームとは独立したプロジェクト)
+    ・ルール: 回る針を、金色の弧の中で止める。全3ラウンド成功でクリア。
+    ・3つの画面(title / play / result)を hidden で切り替える。処理は js/game.js、数値は game.js 先頭の CONFIG。
+  -->
+  <div class="petals" id="petals" aria-hidden="true"></div>
+
+  <main class="stage">
+    <section id="screen-title" class="view view--title">
+      <p class="eyebrow">LOVE RPG — EXTRA</p>
+      <h1 class="title">夜桜の<ruby>裏舞台<rt>うらぶたい</rt></ruby></h1>
+      <p class="lead">散る花びらの下で、先輩が待っている。<br>回る針を、金の弧の中で止めよう。</p>
+      <button id="btn-start" class="btn btn--gold" type="button">舞台に上がる</button>
+      <a id="link-back-title" class="back" href="../index.html">← 表の世界へ戻る</a>
+    </section>
+
+    <section id="screen-play" class="view view--play" hidden>
+      <header class="hud">
+        <span id="round-label" class="hud__round">第一幕</span>
+        <span id="timer" class="hud__time">00:00:00</span>
+      </header>
+
+      <div class="dial">
+        <svg viewBox="0 0 200 200" class="dial__svg" role="img" aria-label="告白ダイヤル">
+          <circle class="dial__track" cx="100" cy="100" r="80"/>
+          <circle class="dial__zone" id="zone" cx="100" cy="100" r="80"/>
+          <g id="hand"><line class="dial__hand" x1="100" y1="100" x2="100" y2="12"/><circle class="dial__tip" cx="100" cy="12" r="6"/></g>
+          <circle class="dial__core" cx="100" cy="100" r="9"/>
+        </svg>
+        <div class="dial__name" id="portrait">雪乃</div>
+      </div>
+
+      <p class="line" id="msg"></p>
+      <button id="btn-confess" class="btn btn--sakura" type="button">告白する</button>
+    </section>
+
+    <section id="screen-result" class="view view--result" hidden>
+      <h1 class="title title--sm" id="result-heading"></h1>
+      <p class="lead" id="result-text"></p>
+      <button id="btn-retry" class="btn btn--gold" type="button">もう一度</button>
+      <a id="link-back-result" class="back" href="../index.html">← 表の世界へ戻る</a>
+    </section>
+  </main>
+
+  <script src="js/game.js"></script>
+</body>
+</html>
